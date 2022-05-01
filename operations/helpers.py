@@ -101,7 +101,7 @@ def process_request(request, download):
     print(snapshots)
 
     for snapshot in snapshots:
-
+        print("Creating Snapshot Video!")
         clip1 = snapshot['position_1']
         clip2 = snapshot['position_2']
         clip3 = snapshot['position_3']
