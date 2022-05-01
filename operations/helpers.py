@@ -21,13 +21,14 @@ def upload_result_video(request):
     request.save()
 
 
-def process_request(request):
-    request.request_log += "Starting Downloading Videos \n"
-    request.save()
-    download_temp_videos(request)
-    request.request_log += "Finished Downloading Videos \n"
-    request.request_log += "-----------------------------------------------\n"
-    request.save()
+def process_request(request, download):
+    if download:
+        request.request_log += "Starting Downloading Videos \n"
+        request.save()
+        download_temp_videos(request)
+        request.request_log += "Finished Downloading Videos \n"
+        request.request_log += "-----------------------------------------------\n"
+        request.save()
 
     result = []
     actions_time = []
@@ -113,9 +114,12 @@ def process_request(request):
 
         snapshot_output = clips_array(clips)
         result.append(snapshot_output)
+        print("Processed Snapshot")
 
     # showing final clip
+    print("Concatenating Video Clips")
     final = concatenate_videoclips(result)
+    print("Writing to file")
     final.write_videofile('output_storage/' + str(request.id) + '.mp4', fps=25, codec='mpeg4')
-
+    print("Uploading Video back")
     upload_result_video(request)
