@@ -37,7 +37,7 @@ def ip_addresses():
                 ip_list.append(addrs[x][0]['addr'])
     return ip_list
 
-ALLOWED_HOSTS = ip_addresses()
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'operations',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
