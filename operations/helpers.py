@@ -22,12 +22,12 @@ def upload_result_video(request):
 
 
 def process_request(request):
-    #request.request_log += "Starting Downloading Videos \n"
-    #request.save()
-    #download_temp_videos(request)
-    #request.request_log += "Finished Downloading Videos \n"
-    #request.request_log += "-----------------------------------------------\n"
-    #request.save()
+    request.request_log += "Starting Downloading Videos \n"
+    request.save()
+    download_temp_videos(request)
+    request.request_log += "Finished Downloading Videos \n"
+    request.request_log += "-----------------------------------------------\n"
+    request.save()
 
     result = []
     actions_time = []
